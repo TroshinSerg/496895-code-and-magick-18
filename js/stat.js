@@ -8,8 +8,8 @@ var CLOUD = {
   paddingY: 35,
   paddingX: 20,
   offset: 10,
-  fill: 'rgba(255, 255, 255, 1);',
-  shadowFill: 'rgba(0, 0, 0, 0.7);'
+  fill: 'rgba(255, 255, 255, 1)',
+  shadowFill: 'rgba(0, 0, 0, 0.7)'
 };
 var WIN_MESSAGE = 'Ура вы победили!\nСписок результатов:';
 var TEXT_OPTION = '16px PT Mono';

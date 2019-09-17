@@ -49,13 +49,12 @@ var drawText = function (ctx, text, x, y) {
 
 var drawBars = function (ctx, names, times) {
   var maxHeight = Math.max.apply(null, times);
-  var colHeights = [];
   for (var i = 0; i < names.length; i++) {
-    colHeights[i] = times[i] * BAR_GRAPH_HEIGHT / maxHeight;
+    var colHeight = times[i] * BAR_GRAPH_HEIGHT / maxHeight;
     var colShift = BAR_GRAPH_X + (COL_WIDTH + COL_GAP) * i;
-    var verticalShift = BAR_GRAPH_Y + (BAR_GRAPH_HEIGHT - colHeights[i]);
+    var verticalShift = BAR_GRAPH_Y + (BAR_GRAPH_HEIGHT - colHeight);
 
-    drawRect(ctx, colShift, verticalShift, COL_WIDTH, colHeights[i], names[i] === 'Вы' ? PLAYER_COL_FILL : getRandomFill(SECOND_COL_FILL_HSL));
+    drawRect(ctx, colShift, verticalShift, COL_WIDTH, colHeight, names[i] === 'Вы' ? PLAYER_COL_FILL : getRandomFill(SECOND_COL_FILL_HSL));
     drawText(ctx, Math.round(times[i]).toString(), colShift, verticalShift - TEXT_GAP / 2.5);
     drawText(ctx, names[i], colShift, BAR_GRAPH_Y + BAR_GRAPH_HEIGHT + TEXT_GAP);
   }

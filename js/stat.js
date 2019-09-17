@@ -48,7 +48,6 @@ var drawText = function (ctx, text, x, y) {
 };
 
 var drawBars = function (ctx, names, times) {
-  times = times.map(Math.round);
   var maxHeight = Math.max.apply(null, times);
   var colHeights = [];
   for (var i = 0; i < names.length; i++) {
@@ -57,7 +56,7 @@ var drawBars = function (ctx, names, times) {
     var verticalShift = BAR_GRAPH_Y + (BAR_GRAPH_HEIGHT - colHeights[i]);
 
     drawRect(ctx, colShift, verticalShift, COL_WIDTH, colHeights[i], names[i] === 'Вы' ? PLAYER_COL_FILL : getRandomFill(SECOND_COL_FILL_HSL));
-    drawText(ctx, times[i].toString(), colShift, verticalShift - TEXT_GAP / 2.5);
+    drawText(ctx, Math.round(times[i]).toString(), colShift, verticalShift - TEXT_GAP / 2.5);
     drawText(ctx, names[i], colShift, BAR_GRAPH_Y + BAR_GRAPH_HEIGHT + TEXT_GAP);
   }
 };

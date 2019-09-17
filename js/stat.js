@@ -57,20 +57,14 @@ var getColHeights = function (times) {
   return heights;
 };
 
-var roundTimes = function (arr) {
-  for (var i = 0; i < arr.length; i++) {
-    arr[i] = Math.round(arr[i]);
-  }
-  return arr;
-};
-
 var drawBars = function (ctx, names, times) {
-  roundTimes(times);
+  times = times.map(Math.round);
   var colHeights = getColHeights(times);
   for (var i = 0; i < names.length; i++) {
-    drawRect(ctx, BAR_GRAPH_X + (COL_WIDTH + COL_GAP) * i, BAR_GRAPH_Y + (BAR_GRAPH_HEIGHT - colHeights[i]), COL_WIDTH, colHeights[i], names[i] === 'Вы' ? PLAYER_COL_FILL : getRandomFill(SECOND_COL_FILL_HSL));
-    drawText(ctx, names[i], BAR_GRAPH_X + (COL_WIDTH + COL_GAP) * i, BAR_GRAPH_Y + (BAR_GRAPH_HEIGHT - colHeights[i]) - TEXT_GAP / 2.5);
-    drawText(ctx, times[i].toString(), BAR_GRAPH_X + (COL_WIDTH + COL_GAP) * i, BAR_GRAPH_Y + BAR_GRAPH_HEIGHT + TEXT_GAP);
+    var colShift = BAR_GRAPH_X + (COL_WIDTH + COL_GAP) * i;
+    drawRect(ctx, colShift, BAR_GRAPH_Y + (BAR_GRAPH_HEIGHT - colHeights[i]), COL_WIDTH, colHeights[i], names[i] === 'Вы' ? PLAYER_COL_FILL : getRandomFill(SECOND_COL_FILL_HSL));
+    drawText(ctx, times[i].toString(), colShift, BAR_GRAPH_Y + (BAR_GRAPH_HEIGHT - colHeights[i]) - TEXT_GAP / 2.5);
+    drawText(ctx, names[i], colShift, BAR_GRAPH_Y + BAR_GRAPH_HEIGHT + TEXT_GAP);
   }
 };
 

@@ -47,20 +47,12 @@ var drawText = function (ctx, text, x, y) {
   }
 };
 
-var getColHeights = function (times) {
-  var maxHeight = Math.max.apply(null, times);
-  var heights = [];
-
-  for (var i = 0; i < times.length; i++) {
-    heights[i] = times[i] * BAR_GRAPH_HEIGHT / maxHeight;
-  }
-  return heights;
-};
-
 var drawBars = function (ctx, names, times) {
   times = times.map(Math.round);
-  var colHeights = getColHeights(times);
+  var maxHeight = Math.max.apply(null, times);
+  var colHeights = [];
   for (var i = 0; i < names.length; i++) {
+    colHeights[i] = times[i] * BAR_GRAPH_HEIGHT / maxHeight;
     var colShift = BAR_GRAPH_X + (COL_WIDTH + COL_GAP) * i;
     drawRect(ctx, colShift, BAR_GRAPH_Y + (BAR_GRAPH_HEIGHT - colHeights[i]), COL_WIDTH, colHeights[i], names[i] === 'Вы' ? PLAYER_COL_FILL : getRandomFill(SECOND_COL_FILL_HSL));
     drawText(ctx, times[i].toString(), colShift, BAR_GRAPH_Y + (BAR_GRAPH_HEIGHT - colHeights[i]) - TEXT_GAP / 2.5);

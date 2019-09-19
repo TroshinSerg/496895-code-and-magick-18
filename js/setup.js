@@ -31,16 +31,21 @@ var getWizards = function (count, names, surnames, coatColors, eyesColors) {
   return arr;
 };
 
+var createsSimilarWizards = function (count, names, surnames, coatColors, eyesColors) {
+  var wizards = getWizards(count, names, surnames, coatColors, eyesColors);
+
+  for (var i = 0; i < count; i++) {
+    var newWizardItem = similarWizardItem.cloneNode(true);
+    newWizardItem.querySelector('.setup-similar-label').textContent = wizards[i].name;
+    newWizardItem.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
+    newWizardItem.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor;
+    fragment.appendChild(newWizardItem);
+  }
+
+  similarList.appendChild(fragment);
+};
+
 userDialog.classList.remove('hidden');
 setupSimilar.classList.remove('hidden');
-var wizards = getWizards(WIZARDS_COUNT, WIZARDS_NAMES, WIZARDS_SURNAMES, WIZARDS_COAT_COLORS, WIZARDS_EYES_COLORS);
 
-for (var i = 0; i < WIZARDS_COUNT; i++) {
-  var newWizardItem = similarWizardItem.cloneNode(true);
-  newWizardItem.querySelector('.setup-similar-label').textContent = wizards[i].name;
-  newWizardItem.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
-  newWizardItem.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor;
-  fragment.appendChild(newWizardItem);
-}
-
-similarList.appendChild(fragment);
+createsSimilarWizards(WIZARDS_COUNT, WIZARDS_NAMES, WIZARDS_SURNAMES, WIZARDS_COAT_COLORS, WIZARDS_EYES_COLORS);

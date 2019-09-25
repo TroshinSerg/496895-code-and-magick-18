@@ -71,5 +71,11 @@ setupOpenBtn.addEventListener('keydown', function (evt) {
   }
 });
 
+setupCloseBtn.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 13) {
+    closeUserDialog();
+  }
+});
+
 setupSimilar.classList.remove('hidden');
 createsSimilarWizards(WIZARDS_COUNT, WIZARDS_NAMES, WIZARDS_SURNAMES, WIZARDS_COAT_COLORS, WIZARDS_EYES_COLORS);

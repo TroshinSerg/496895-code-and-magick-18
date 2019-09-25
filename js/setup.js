@@ -52,7 +52,7 @@ var createsSimilarWizards = function (count, names, surnames, coatColors, eyesCo
 };
 
 var onSetupEscPress = function (evt) {
-  if (evt.keyCode === KEYCODE_ESC) {
+  if (evt.keyCode === KEYCODE_ESC && inputSetupUserName !== document.activeElement) {
     closeUserDialog();
   }
 };
@@ -85,14 +85,6 @@ setupCloseBtn.addEventListener('keydown', function (evt) {
   if (evt.keyCode === KEYCODE_ENTER || evt.keyCode === KEYCODE_SPACE) {
     closeUserDialog();
   }
-});
-
-inputSetupUserName.addEventListener('focus', function () {
-  document.removeEventListener('keydown', onSetupEscPress);
-});
-
-inputSetupUserName.addEventListener('blur', function () {
-  document.addEventListener('keydown', onSetupEscPress);
 });
 
 setupSimilar.classList.remove('hidden');

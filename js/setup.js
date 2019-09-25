@@ -6,6 +6,8 @@ var WIZARDS_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 
 var WIZARDS_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var WIZARDS_COUNT = 4;
 var KEYCODE_ESC = 27;
+var KEYCODE_ENTER = 13;
+var KEYCODE_SPACE = 32;
 
 var fragment = document.createDocumentFragment();
 var userDialog = document.querySelector('.setup');
@@ -48,7 +50,6 @@ var createsSimilarWizards = function (count, names, surnames, coatColors, eyesCo
   similarList.appendChild(fragment);
 };
 
-
 var onSetupEscPress = function (evt) {
   if (evt.keyCode === KEYCODE_ESC) {
     closeUserDialog();
@@ -65,25 +66,22 @@ var closeUserDialog = function () {
   document.removeEventListener('keydown', onSetupEscPress);
 };
 
-
-var onSetupOpenBtnClick = function () {
+setupOpenBtn.addEventListener('click', function () {
   openUserDialog();
-};
+});
 
-var onSetupCloseBtnClick = function () {
+setupCloseBtn.addEventListener('click', function () {
   closeUserDialog();
-};
+});
 
-setupOpenBtn.addEventListener('click', onSetupOpenBtnClick);
-setupCloseBtn.addEventListener('click', onSetupCloseBtnClick);
 setupOpenBtn.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === 13) {
+  if (evt.keyCode === KEYCODE_ENTER) {
     openUserDialog();
   }
 });
 
 setupCloseBtn.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === 13) {
+  if (evt.keyCode === KEYCODE_ENTER) {
     closeUserDialog();
   }
 });

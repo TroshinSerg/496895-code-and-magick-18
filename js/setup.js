@@ -11,6 +11,7 @@ var userDialog = document.querySelector('.setup');
 var setupSimilar = document.querySelector('.setup-similar');
 var similarList = document.querySelector('.setup-similar-list');
 var similarWizardItem = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+var setupOpenBtn = document.querySelector('.setup-open');
 
 var getRandomElement = function (array) {
   var randomIndex = Math.floor(Math.random() * array.length);
@@ -45,7 +46,10 @@ var createsSimilarWizards = function (count, names, surnames, coatColors, eyesCo
   similarList.appendChild(fragment);
 };
 
-userDialog.classList.remove('hidden');
-setupSimilar.classList.remove('hidden');
+var onSetupOpenBtnClick = function () {
+  userDialog.classList.remove('hidden');
+}
 
+setupOpenBtn.addEventListener('click', onSetupOpenBtnClick);
+setupSimilar.classList.remove('hidden');
 createsSimilarWizards(WIZARDS_COUNT, WIZARDS_NAMES, WIZARDS_SURNAMES, WIZARDS_COAT_COLORS, WIZARDS_EYES_COLORS);

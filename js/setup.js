@@ -5,6 +5,7 @@ var WIZARDS_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', '
 var WIZARDS_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARDS_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var WIZARDS_COUNT = 4;
+var KEYCODE_ESC = 27;
 
 var fragment = document.createDocumentFragment();
 var userDialog = document.querySelector('.setup');
@@ -47,13 +48,23 @@ var createsSimilarWizards = function (count, names, surnames, coatColors, eyesCo
   similarList.appendChild(fragment);
 };
 
+
+var onSetupEscPress = function (evt) {
+  if (evt.keyCode === KEYCODE_ESC) {
+    closeUserDialog();
+  }
+};
+
 var openUserDialog = function () {
   userDialog.classList.remove('hidden');
+  document.addEventListener('keydown', onSetupEscPress);
 };
 
 var closeUserDialog = function () {
   userDialog.classList.add('hidden');
+  document.removeEventListener('keydown', onSetupEscPress);
 };
+
 
 var onSetupOpenBtnClick = function () {
   openUserDialog();

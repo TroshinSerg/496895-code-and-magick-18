@@ -16,6 +16,7 @@ var similarList = document.querySelector('.setup-similar-list');
 var similarWizardItem = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var setupOpenBtn = document.querySelector('.setup-open');
 var setupCloseBtn = userDialog.querySelector('.setup-close');
+var inputSetupUserName = userDialog.querySelector('.setup-user-name');
 
 var getRandomElement = function (array) {
   var randomIndex = Math.floor(Math.random() * array.length);
@@ -84,6 +85,14 @@ setupCloseBtn.addEventListener('keydown', function (evt) {
   if (evt.keyCode === KEYCODE_ENTER || evt.keyCode === KEYCODE_SPACE) {
     closeUserDialog();
   }
+});
+
+inputSetupUserName.addEventListener('focus', function () {
+  document.removeEventListener('keydown', onSetupEscPress);
+});
+
+inputSetupUserName.addEventListener('blur', function () {
+  document.addEventListener('keydown', onSetupEscPress);
 });
 
 setupSimilar.classList.remove('hidden');

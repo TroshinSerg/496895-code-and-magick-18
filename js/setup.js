@@ -12,6 +12,7 @@ var setupSimilar = document.querySelector('.setup-similar');
 var similarList = document.querySelector('.setup-similar-list');
 var similarWizardItem = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var setupOpenBtn = document.querySelector('.setup-open');
+var setupCloseBtn = userDialog.querySelector('.setup-close');
 
 var getRandomElement = function (array) {
   var randomIndex = Math.floor(Math.random() * array.length);
@@ -50,6 +51,11 @@ var onSetupOpenBtnClick = function () {
   userDialog.classList.remove('hidden');
 }
 
+var onSetupCloseBtnClick = function () {
+  userDialog.classList.add('hidden');
+}
+
 setupOpenBtn.addEventListener('click', onSetupOpenBtnClick);
+setupCloseBtn.addEventListener('click', onSetupCloseBtnClick);
 setupSimilar.classList.remove('hidden');
 createsSimilarWizards(WIZARDS_COUNT, WIZARDS_NAMES, WIZARDS_SURNAMES, WIZARDS_COAT_COLORS, WIZARDS_EYES_COLORS);

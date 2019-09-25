@@ -75,13 +75,13 @@ setupCloseBtn.addEventListener('click', function () {
 });
 
 setupOpenBtn.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === KEYCODE_ENTER) {
+  if (evt.keyCode === KEYCODE_ENTER || evt.keyCode === KEYCODE_SPACE) {
     openUserDialog();
   }
 });
 
 setupCloseBtn.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === KEYCODE_ENTER) {
+  if (evt.keyCode === KEYCODE_ENTER || evt.keyCode === KEYCODE_SPACE) {
     closeUserDialog();
   }
 });

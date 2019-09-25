@@ -47,15 +47,29 @@ var createsSimilarWizards = function (count, names, surnames, coatColors, eyesCo
   similarList.appendChild(fragment);
 };
 
-var onSetupOpenBtnClick = function () {
+var openUserDialog = function () {
   userDialog.classList.remove('hidden');
-}
+};
+
+var closeUserDialog = function () {
+  userDialog.classList.add('hidden');
+};
+
+var onSetupOpenBtnClick = function () {
+  openUserDialog();
+};
 
 var onSetupCloseBtnClick = function () {
-  userDialog.classList.add('hidden');
-}
+  closeUserDialog();
+};
 
 setupOpenBtn.addEventListener('click', onSetupOpenBtnClick);
 setupCloseBtn.addEventListener('click', onSetupCloseBtnClick);
+setupOpenBtn.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 13) {
+    openUserDialog();
+  }
+});
+
 setupSimilar.classList.remove('hidden');
 createsSimilarWizards(WIZARDS_COUNT, WIZARDS_NAMES, WIZARDS_SURNAMES, WIZARDS_COAT_COLORS, WIZARDS_EYES_COLORS);

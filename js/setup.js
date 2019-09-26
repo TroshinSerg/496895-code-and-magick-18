@@ -43,15 +43,15 @@ var getRandomElement = function (array, remove) {
 };
 
 var getWizards = function (count, names, surnames, coatColors, eyesColors) {
-  var arr = [];
+  var wizards = [];
   for (var i = 0; i < count; i++) {
-    arr.push({
+    wizards.push({
       name: getRandomElement(names) + ' ' + getRandomElement(surnames),
       coatColor: getRandomElement(coatColors),
       eyesColor: getRandomElement(eyesColors)
     });
   }
-  return arr;
+  return wizards;
 };
 
 var createsSimilarWizards = function (count, names, surnames, coatColors, eyesColors) {

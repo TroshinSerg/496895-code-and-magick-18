@@ -56,7 +56,7 @@ var createsSimilarWizards = function (count, names, surnames, coatColors, eyesCo
   var fragment = document.createDocumentFragment();
   var wizards = getWizards(count, names, surnames, coatColors, eyesColors);
 
-  wizards.forEach(function(element) {
+  wizards.forEach(function (element) {
     var newWizardItem = SIMILAR_WIZARD_ITEM.cloneNode(true);
     newWizardItem.querySelector('.setup-similar-label').textContent = element.name;
     newWizardItem.querySelector('.wizard-coat').style.fill = element.coatColor;

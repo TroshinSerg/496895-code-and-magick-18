@@ -85,45 +85,41 @@ var onWizardsFireballClick = function () {
   changeWizardColor(SETUP_FIREBALL, WIZARDS_FIREBALL_COLORS);
 };
 
-SETUP_FIREBALL.part.addEventListener('click', onWizardsFireballClick);
-SETUP_COAT.part.addEventListener('click', onWizardsCoatClick);
-SETUP_EYES.part.addEventListener('click', onWizardsEyesClick);
-
-var onSetupEscPress = function (evt) {
-  if (evt.keyCode === KEYCODE_ESC && INPUT_SETUP_USER_NAME !== document.activeElement) {
-    closeUSER_DIALOG();
-  }
-};
-
-var openUSER_DIALOG = function () {
+var onSetupOpenBtnClick = function () {
   USER_DIALOG.classList.remove('hidden');
   document.addEventListener('keydown', onSetupEscPress);
 };
 
-var closeUSER_DIALOG = function () {
+var onSetupCloseBtnClick = function () {
   USER_DIALOG.classList.add('hidden');
   document.removeEventListener('keydown', onSetupEscPress);
 };
 
-SETUP_OPEN_BTN.addEventListener('click', function () {
-  openUSER_DIALOG();
-});
-
-SETUP_CLOSE_BTN.addEventListener('click', function () {
-  closeUSER_DIALOG();
-});
-
-SETUP_OPEN_BTN.addEventListener('keydown', function (evt) {
+var onSetupOpenBtnKeydown = function (evt) {
   if (evt.keyCode === KEYCODE_ENTER || evt.keyCode === KEYCODE_SPACE) {
-    openUSER_DIALOG();
+    onSetupOpenBtnClick(evt);
   }
-});
+};
 
-SETUP_CLOSE_BTN.addEventListener('keydown', function (evt) {
+var onSetupCloseBtnKeydown = function (evt) {
   if (evt.keyCode === KEYCODE_ENTER || evt.keyCode === KEYCODE_SPACE) {
-    closeUSER_DIALOG();
+    onSetupCloseBtnClick(evt);
   }
-});
+};
+
+var onSetupEscPress = function (evt) {
+  if (evt.keyCode === KEYCODE_ESC && INPUT_SETUP_USER_NAME !== document.activeElement) {
+    onSetupCloseBtnClick(evt);
+  }
+};
+
+SETUP_OPEN_BTN.addEventListener('click', onSetupOpenBtnClick);
+SETUP_CLOSE_BTN.addEventListener('click', onSetupCloseBtnClick);
+SETUP_OPEN_BTN.addEventListener('keydown', onSetupOpenBtnKeydown);
+SETUP_CLOSE_BTN.addEventListener('keydown', onSetupCloseBtnKeydown);
+SETUP_FIREBALL.part.addEventListener('click', onWizardsFireballClick);
+SETUP_COAT.part.addEventListener('click', onWizardsCoatClick);
+SETUP_EYES.part.addEventListener('click', onWizardsEyesClick);
 
 SETUP_SIMILAR.classList.remove('hidden');
 createsSimilarWizards(WIZARDS_COUNT, WIZARDS_NAMES, WIZARDS_SURNAMES, WIZARDS_COAT_COLORS, WIZARDS_EYES_COLORS);

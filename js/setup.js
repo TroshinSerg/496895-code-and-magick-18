@@ -56,13 +56,13 @@ var createsSimilarWizards = function (count, names, surnames, coatColors, eyesCo
   var fragment = document.createDocumentFragment();
   var wizards = getWizards(count, names, surnames, coatColors, eyesColors);
 
-  for (var i = 0; i < count; i++) {
+  wizards.forEach(function(element) {
     var newWizardItem = SIMILAR_WIZARD_ITEM.cloneNode(true);
-    newWizardItem.querySelector('.setup-similar-label').textContent = wizards[i].name;
-    newWizardItem.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
-    newWizardItem.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor;
+    newWizardItem.querySelector('.setup-similar-label').textContent = element.name;
+    newWizardItem.querySelector('.wizard-coat').style.fill = element.coatColor;
+    newWizardItem.querySelector('.wizard-eyes').style.fill = element.eyesColor;
     fragment.appendChild(newWizardItem);
-  }
+  });
 
   SIMILAR_LIST.appendChild(fragment);
 };

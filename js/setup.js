@@ -9,8 +9,6 @@ var WIZARDS_COUNT = 4;
 var KEYCODE_ESC = 27;
 var KEYCODE_ENTER = 13;
 var KEYCODE_SPACE = 32;
-
-var fragment = document.createDocumentFragment();
 var USER_DIALOG = document.querySelector('.setup');
 var SETUP_SIMILAR = document.querySelector('.setup-similar');
 var SIMILAR_LIST = document.querySelector('.setup-similar-list');
@@ -55,6 +53,7 @@ var getWizards = function (count, names, surnames, coatColors, eyesColors) {
 };
 
 var createsSimilarWizards = function (count, names, surnames, coatColors, eyesColors) {
+  var fragment = document.createDocumentFragment();
   var wizards = getWizards(count, names, surnames, coatColors, eyesColors);
 
   for (var i = 0; i < count; i++) {

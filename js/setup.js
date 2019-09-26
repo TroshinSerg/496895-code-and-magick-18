@@ -11,29 +11,29 @@ var KEYCODE_ENTER = 13;
 var KEYCODE_SPACE = 32;
 
 var fragment = document.createDocumentFragment();
-var userDialog = document.querySelector('.setup');
-var setupSimilar = document.querySelector('.setup-similar');
-var similarList = document.querySelector('.setup-similar-list');
-var similarWizardItem = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
-var setupOpenBtn = document.querySelector('.setup-open');
-var setupCloseBtn = userDialog.querySelector('.setup-close');
-var inputSetupUserName = userDialog.querySelector('.setup-user-name');
+var USER_DIALOG = document.querySelector('.setup');
+var SETUP_SIMILAR = document.querySelector('.setup-similar');
+var SIMILAR_LIST = document.querySelector('.setup-similar-list');
+var SIMILAR_WIZARD_ITEM = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+var SETUP_OPEN_BTN = document.querySelector('.setup-open');
+var SETUP_CLOSE_BTN = USER_DIALOG.querySelector('.setup-close');
+var INPUT_SETUP_USER_NAME = USER_DIALOG.querySelector('.setup-user-name');
 
 var SETUP_COAT = {
-  part: userDialog.querySelector('.setup-wizard .wizard-coat'),
-  input: userDialog.querySelector('[name="coat-color"]'),
+  part: USER_DIALOG.querySelector('.setup-wizard .wizard-coat'),
+  input: USER_DIALOG.querySelector('[name="coat-color"]'),
   property: 'fill: '
 };
 
 var SETUP_EYES = {
-  part: userDialog.querySelector('.setup-wizard .wizard-eyes'),
-  input: userDialog.querySelector('[name="eyes-color"]'),
+  part: USER_DIALOG.querySelector('.setup-wizard .wizard-eyes'),
+  input: USER_DIALOG.querySelector('[name="eyes-color"]'),
   property: 'fill: '
 };
 
 var SETUP_FIREBALL = {
-  part: userDialog.querySelector('.setup-fireball-wrap'),
-  input: userDialog.querySelector('.setup-fireball-wrap input'),
+  part: USER_DIALOG.querySelector('.setup-fireball-wrap'),
+  input: USER_DIALOG.querySelector('.setup-fireball-wrap input'),
   property: 'background-color: '
 };
 
@@ -58,14 +58,14 @@ var createsSimilarWizards = function (count, names, surnames, coatColors, eyesCo
   var wizards = getWizards(count, names, surnames, coatColors, eyesColors);
 
   for (var i = 0; i < count; i++) {
-    var newWizardItem = similarWizardItem.cloneNode(true);
+    var newWizardItem = SIMILAR_WIZARD_ITEM.cloneNode(true);
     newWizardItem.querySelector('.setup-similar-label').textContent = wizards[i].name;
     newWizardItem.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
     newWizardItem.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor;
     fragment.appendChild(newWizardItem);
   }
 
-  similarList.appendChild(fragment);
+  SIMILAR_LIST.appendChild(fragment);
 };
 
 var changeWizardColor = function (obj, colors) {
@@ -91,40 +91,40 @@ SETUP_COAT.part.addEventListener('click', onWizardsCoatClick);
 SETUP_EYES.part.addEventListener('click', onWizardsEyesClick);
 
 var onSetupEscPress = function (evt) {
-  if (evt.keyCode === KEYCODE_ESC && inputSetupUserName !== document.activeElement) {
-    closeUserDialog();
+  if (evt.keyCode === KEYCODE_ESC && INPUT_SETUP_USER_NAME !== document.activeElement) {
+    closeUSER_DIALOG();
   }
 };
 
-var openUserDialog = function () {
-  userDialog.classList.remove('hidden');
+var openUSER_DIALOG = function () {
+  USER_DIALOG.classList.remove('hidden');
   document.addEventListener('keydown', onSetupEscPress);
 };
 
-var closeUserDialog = function () {
-  userDialog.classList.add('hidden');
+var closeUSER_DIALOG = function () {
+  USER_DIALOG.classList.add('hidden');
   document.removeEventListener('keydown', onSetupEscPress);
 };
 
-setupOpenBtn.addEventListener('click', function () {
-  openUserDialog();
+SETUP_OPEN_BTN.addEventListener('click', function () {
+  openUSER_DIALOG();
 });
 
-setupCloseBtn.addEventListener('click', function () {
-  closeUserDialog();
+SETUP_CLOSE_BTN.addEventListener('click', function () {
+  closeUSER_DIALOG();
 });
 
-setupOpenBtn.addEventListener('keydown', function (evt) {
+SETUP_OPEN_BTN.addEventListener('keydown', function (evt) {
   if (evt.keyCode === KEYCODE_ENTER || evt.keyCode === KEYCODE_SPACE) {
-    openUserDialog();
+    openUSER_DIALOG();
   }
 });
 
-setupCloseBtn.addEventListener('keydown', function (evt) {
+SETUP_CLOSE_BTN.addEventListener('keydown', function (evt) {
   if (evt.keyCode === KEYCODE_ENTER || evt.keyCode === KEYCODE_SPACE) {
-    closeUserDialog();
+    closeUSER_DIALOG();
   }
 });
 
-setupSimilar.classList.remove('hidden');
+SETUP_SIMILAR.classList.remove('hidden');
 createsSimilarWizards(WIZARDS_COUNT, WIZARDS_NAMES, WIZARDS_SURNAMES, WIZARDS_COAT_COLORS, WIZARDS_EYES_COLORS);
